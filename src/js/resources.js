@@ -1,6 +1,6 @@
 import { ImageSource, Sound, Resource, Loader } from "excalibur";
-import retroImage from "./Retro.png";
-import backImage from "./Background.png";
+import retroImage from "../images/Retro.png";
+import backImage from "../images/Background.png";
 
 const Resources = {
   Retro: new ImageSource(retroImage),

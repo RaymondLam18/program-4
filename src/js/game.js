@@ -1,5 +1,5 @@
 import { Actor, Engine, Vector, Label, Color, Font } from "excalibur";
-import { Resources, ResourceLoader } from "./resources.js";
+import { Resources, ResourceLoader } from "../js/resources.js";
 
 export class Game extends Engine {
   constructor() {
