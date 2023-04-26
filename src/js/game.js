@@ -12,6 +12,7 @@ export class Game extends Engine {
     backGround.graphics.use(Resources.Back.toSprite());
     backGround.pos = new Vector(300, 250);
     backGround.scale = new Vector(0.5, 0.5);
+    backGround.vel = new Vector(-100, 0);
     this.add(backGround);
 
     const Retro = new Actor({
@@ -19,13 +20,12 @@ export class Game extends Engine {
       height: Resources.Retro.height,
     });
     Retro.graphics.use(Resources.Retro.toSprite());
-    Retro.pos = new Vector(100, 200);
-    Retro.scale = new Vector(0.5, 0.5);
-    Retro.vel = new Vector(10, 0);
+    Retro.pos = new Vector(50, 400);
+    Retro.scale = new Vector(0.25, 0.25);
     this.add(Retro);
 
     Retro.on("pointerup", (event) => {
-      event.kill();
+      Retro.pos = new Vector(100, 100);
     });
   }
 }
