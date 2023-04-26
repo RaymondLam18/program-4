@@ -20,12 +20,12 @@ export class Game extends Engine {
       height: Resources.Retro.height,
     });
     Retro.graphics.use(Resources.Retro.toSprite());
-    Retro.pos = new Vector(50, 400);
+    Retro.pos = new Vector(60, 400);
     Retro.scale = new Vector(0.25, 0.25);
     this.add(Retro);
 
     Retro.on("pointerup", (event) => {
-      Retro.pos = new Vector(100, 100);
+      Retro.pos = new Vector(60, 100);
     });
   }
 }
