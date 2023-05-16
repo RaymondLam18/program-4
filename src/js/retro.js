@@ -1,5 +1,5 @@
 import { Actor, Vector, Engine, Random } from "excalibur";
-import { Resources } from "../js/resources.js";
+import { Resources } from "./resources.js";
 
 export class Retro extends Actor {
     onInitialize(engine) {

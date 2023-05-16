@@ -1,5 +1,5 @@
 import { Actor, Engine, Vector, Label, Color, Font } from "excalibur";
-import { Resources, ResourceLoader } from "../js/resources.js";
+import { Resources, ResourceLoader } from "./resources.js";
 import {Retro} from "../js/retro.js"
 import { player } from "../js/player.js";
 

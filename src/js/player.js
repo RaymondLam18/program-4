@@ -1,5 +1,5 @@
 import * as ex from "excalibur";
-import {Resources} from "../js/resources.js";
+import {Resources} from "./resources.js";
 import {Animation, AnimationStrategy, Color, Input} from "excalibur";
 
 
@@ -32,7 +32,7 @@ export class player extends ex.Actor {
             pos: new ex.Vector(x, y),
             collisionType: ex.CollisionType.Active,
             collisionGroup: ex.CollisionGroupManager.groupByName("player"),
-            collider: ex.Shape.Box(11, 48, ex.Vector.Half, ex.vec(0, 0))
+            collider: ex.Shape.Box(11, 27, ex.Vector.Half, ex.vec(2, 12))
         });
         this.startx = x;
         this.starty = y;
@@ -96,6 +96,15 @@ export class player extends ex.Actor {
             spriteWidth: 72
         }
     })
+    PWallHang = ex.SpriteSheet.fromImageSource({
+        image: Resources.PWallHang,
+        grid: {
+            rows: 1,
+            columns: 1,
+            spriteHeight: 48,
+            spriteWidth: 72
+        }
+    })
     PJump = ex.SpriteSheet.fromImageSource({
         image: Resources.PJump,
         grid: {
@@ -114,8 +123,8 @@ export class player extends ex.Actor {
     PStabRight = ex.Animation.fromSpriteSheet(this.PStab, [0, 1, 2, 3, 4, 5, 6], 10, AnimationStrategy.End)
     PStabLeft = ex.Animation.fromSpriteSheet(this.PStab, [0, 1, 2, 3, 4, 5, 6], 10, AnimationStrategy.End)
 
-    PWallhangR = ex.Animation.fromSpriteSheet(this.PWallSlideS, [0], 20, AnimationStrategy.Loop)
-    PWallhangL = ex.Animation.fromSpriteSheet(this.PWallSlideS, [0], 20, AnimationStrategy.Loop)
+    PWallhangR = ex.Animation.fromSpriteSheet(this.PWallHang, [0], 20, AnimationStrategy.Loop)
+    PWallhangL = ex.Animation.fromSpriteSheet(this.PWallHang, [0], 20, AnimationStrategy.Loop)
     PWallSlideR = ex.Animation.fromSpriteSheet(this.PWallSlideS, [1, 2], 150, AnimationStrategy.Loop)
     PWallSlideL = ex.Animation.fromSpriteSheet(this.PWallSlideS, [1, 2], 150, AnimationStrategy.Loop)
     PWallClimbR = ex.Animation.fromSpriteSheet(this.PWallClimb, [0, 1, 2, 3, 4], 150, AnimationStrategy.End)
@@ -310,26 +319,26 @@ export class player extends ex.Actor {
                 if (this.left) {
                     this.graphics.use("PStabL")
                     if(this.PStabLeft.currentFrameIndex === 4){
-                        this.collider.useBoxCollider(45, 48, ex.Vector.Half, ex.vec(0, 0));
+                        this.collider.useBoxCollider(45, 27, ex.Vector.Half, ex.vec(2, 12));
                         this.stabbed = true
                     }
                     if (this.PStabLeft.done) {
                         this.PStabLeft.reset()
                         this.attacking = false
                         this.stabbed = false
-                        this.collider.useBoxCollider(18, 48, ex.Vector.Half, ex.vec(0, 0))
+                        this.collider.useBoxCollider(18, 27, ex.Vector.Half, ex.vec(2, 12))
                     }
                 } else {
                     this.graphics.use("PStabR")
                     if(this.PStabRight.currentFrameIndex === 4){
-                        this.collider.useBoxCollider(45, 48, ex.Vector.Half, ex.vec(0, 0));
+                        this.collider.useBoxCollider(45, 27, ex.Vector.Half, ex.vec(2, 12));
                         this.stabbed = true;
                     }
                     if (this.PStabRight.done) {
                         this.PStabRight.reset()
                         this.attacking = false
                         this.stabbed = false
-                        this.collider.useBoxCollider(18, 48, ex.Vector.Half, ex.vec(0, 0))
+                        this.collider.useBoxCollider(18, 27, ex.Vector.Half, ex.vec(2, 12))
                     }
                 }
             }
