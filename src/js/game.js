@@ -1,5 +1,7 @@
 import { Actor, Engine, Vector, Label, Color, Font } from "excalibur";
 import { Resources, ResourceLoader } from "../js/resources.js";
+import {Retro} from "../js/retro.js"
+import { player } from "../js/player.js";
 
 export class Game extends Engine {
   constructor() {
@@ -15,14 +17,9 @@ export class Game extends Engine {
     backGround.vel = new Vector(-100, 0);
     this.add(backGround);
 
-    const Retro = new Actor({
-      width: Resources.Retro.width,
-      height: Resources.Retro.height,
-    });
-    Retro.graphics.use(Resources.Retro.toSprite());
-    Retro.pos = new Vector(60, 400);
-    Retro.scale = new Vector(0.25, 0.25);
-    this.add(Retro);
+    this.add(new Retro());
+
+    this.add(player());
 
     Retro.on("pointerup", (event) => {
       Retro.pos = new Vector(60, 100);
