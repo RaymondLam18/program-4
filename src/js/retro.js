@@ -3,17 +3,17 @@ import { Resources } from "./resources.js";
 
 export class Retro extends Actor {
   onInitialize(engine) {
-    this.anchor = new Vector(0, 0);
+    this.anchor = new Vector(0, 1); // Set the anchor point to the bottom-left corner
     this.rand = new Random();
     this.graphics.use(Resources.Retro.toSprite());
     this.scale = new Vector(0.5, 0.5); // Adjust the scale to make the Retro actor smaller
     this.w = Resources.Retro.width * this.scale.x;
     this.h = Resources.Retro.height * this.scale.y;
     
-    // Set the initial position to the left side of the screen
+    // Set the initial position to the left bottom corner of the screen
     this.pos = new Vector(
       this.w,
-      this.rand.integer(this.h, engine.drawHeight - this.h)
+      engine.drawHeight - this.h
     );
 
     this.vel = new Vector(0, 0);
