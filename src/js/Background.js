@@ -1,16 +1,14 @@
-import { Actor, Vector, GraphicsGroup } from 'excalibur'
-import { Resources } from './resources.js'
+import { Actor, Vector, GraphicsGroup } from 'excalibur';
+import { Resources, ResourceLoader } from './resources.js'
 
+export class Terrain extends Actor {
+    offset;
 
-export class Background extends Actor {
+    onInitialize(engine) {
+        const BackImage = Resources.Terrain.toSprite();
+        this.offset = BackImage.width;
 
-    offset
-    
-    onInitialize(engine){
-        const BackImage = Resources.Back.toSprite()
-        this.offset = BackImage.width
-
-        BackImage.height = 480
+        BackImage.height = 600;
 
         const group = new GraphicsGroup({
             members: [
@@ -23,17 +21,17 @@ export class Background extends Actor {
                     pos: new Vector(BackImage.width, 0),
                 }
             ]
-        })
+        });
 
-        this.graphics.anchor = new Vector(0,0)
-        this.graphics.add(group)       
-        this.pos = new Vector(0, 0)
-        this.vel = new Vector(-110, 0)
+        this.graphics.anchor = new Vector(0, 0);
+        this.graphics.add(group);
+        this.pos = new Vector(0, 0);
+        this.vel = new Vector(-100, 0);
     }
 
     onPostUpdate(engine, delta) {
         if (this.pos.x < -this.offset) {
-            this.pos = new Vector(0, 0)
+            this.pos = new Vector(0, 0);
         }
     }
 }

@@ -1,21 +1,25 @@
-import { Actor, Engine, Vector, Label, Color, Font } from "excalibur";
-import { Resources, ResourceLoader } from "./resources.js";
-import {Retro} from "../js/retro.js"
-import { Background } from "./Background.js";
+import { Engine } from 'excalibur'
+import { Level } from './scene'
+import { GameOver } from './gameover'
+import { ResourceLoader } from './resources'
+
 
 export class Game extends Engine {
-  constructor() {
-    super({ width: 640, height: 480 });
-    this.start(ResourceLoader).then(() => this.startGame());
-  }
+    level;
+    gameover;
 
-  startGame() {
+    constructor() {
+        super({ width: 1300, height: 600 });
+        this.start(ResourceLoader).then(() => this.startGame());
+    }
 
-    this.add(new Background())
+    startGame() {
+        this.addScene('level', new Level());
+        this.addScene('gameover', new GameOver());
 
-    this.add(new Retro());
-
-  }
+        this.goToScene('level');
+    }
 }
 
-new Game();
+
+new Game()

@@ -1,77 +1,115 @@
-import { Actor, Vector, Engine, Random, Input } from "excalibur";
-import { Resources } from "./resources.js";
+import { Actor, Engine, Vector, Input, Timer } from "excalibur";
+import { Resources, ResourceLoader } from './resources.js'
+import { projectile } from "./attack.js";
 
-export class Retro extends Actor {
-  onInitialize(engine) {
-    this.anchor = new Vector(0, 1); // Set the anchor point to the bottom-left corner
-    this.rand = new Random();
-    this.graphics.use(Resources.Retro.toSprite());
-    this.scale = new Vector(0.5, 0.5); // Adjust the scale to make the Retro actor smaller
-    this.w = Resources.Retro.width * this.scale.x;
-    this.h = Resources.Retro.height * this.scale.y;
-    
-    // Set the initial position to the left bottom corner of the screen
-    this.pos = new Vector(
-      this.w,
-      engine.drawHeight - this.h
-    );
+export class playercharacter extends Actor {
+    pointerX;
+    pointerY;
 
-    this.vel = new Vector(0, 0);
+    shootDirectionX;
+    shootDirectionY;
 
-    // Register keyboard event handlers for arrow keys and WASD keys
-    engine.input.keyboard.on('hold', this.onKeyDown.bind(this));
-    engine.input.keyboard.on('release', this.onKeyUp.bind(this));
-  }
+    canShoot;
+    isShooting;
+    counter;
 
-  onKeyDown(evt) {
-    // Start moving Retro when the arrow key or WASD key is pressed
-    switch (evt.key) {
-      case Input.Keys.Up:
-      case Input.Keys.W:
-        this.vel.y = -100;
-        break;
-      case Input.Keys.Left:
-      case Input.Keys.A:
-        this.vel.x = -100;
-        break;
-      case Input.Keys.Down:
-      case Input.Keys.S:
-        this.vel.y = 100;
-        break;
-      case Input.Keys.Right:
-      case Input.Keys.D:
-        this.vel.x = 100;
-        break;
+    health;
+
+    constructor() {
+        super({ width: Resources.Player.width, height: Resources.Player.height });
     }
-  }
 
-  onKeyUp(evt) {
-    // Stop moving Retro when the arrow key or WASD key is released
-    switch (evt.key) {
-      case Input.Keys.Up:
-      case Input.Keys.Down:
-      case Input.Keys.W:
-      case Input.Keys.S:
-        this.vel.y = 0;
-        break;
-      case Input.Keys.Left:
-      case Input.Keys.Right:
-      case Input.Keys.A:
-      case Input.Keys.D:
-        this.vel.x = 0;
-        break;
-    }
-  }
+    onInitialize(engine) {
+        this.graphics.use(Resources.Player.toSprite());
+        this.scale = new Vector(0.5, 0.5);
+        this.pos = new Vector(650, 300);
+        this.counter = 0;
+        this.isShooting = false;
 
-  onPostUpdate(engine) {
-    const newPos = this.pos.add(this.vel.scale(engine.deltaTime / 1000));
+        engine.input.pointers.primary.on('down', (event) => {
+            this.isShooting = true;
+        });
 
-    // Check if the new position is within the screen boundaries
-    if (newPos.x >= 0 && newPos.x + this.w <= engine.drawWidth) {
-      this.pos.x = newPos.x;
+        engine.input.pointers.primary.on('up', (event) => {
+            this.isShooting = false;
+        });
+
+        this.health = 0;
+
+        this.on('collisionstart', (event) => {
+            if (this.health < 10) {
+                if (event.other.type === 0) {
+                    event.other.kill();
+                    this.health = this.health + 1;
+                    console.log(`je hebt ${10 - this.health} hp over`);
+                    engine.currentScene.healthbar.onHealthUpdate(this.health);
+                    if (this.health >= 10) {
+                        this.vel = new Vector(0, 0);
+                    }
+                }
+            }
+        });
+
+        this.on('exitviewport', (event) => {
+            engine.goToScene('gameover');
+        });
     }
-    if (newPos.y >= 0 && newPos.y + this.h <= engine.drawHeight) {
-      this.pos.y = newPos.y;
+
+    onPreUpdate(engine, delta) {
+        this.pointerX = engine.input.pointers.primary.lastScreenPos.x;
+        this.pointerY = engine.input.pointers.primary.lastScreenPos.y;
+
+        this.shootDirectionX = this.pointerX - this.pos.x;
+        this.shootDirectionY = this.pointerY - this.pos.y;
+
+        let x = 0;
+        let y = 0;
+
+        if (this.health < 10) {
+            if (engine.input.keyboard.isHeld(Input.Keys.W)) {
+                if (this.pos.y > 125) {
+                    y = -300;
+                }
+            }
+            if (engine.input.keyboard.isHeld(Input.Keys.A)) {
+                if (this.pos.x > 50) {
+                    x = -300;
+                }
+            }
+            if (engine.input.keyboard.isHeld(Input.Keys.D)) {
+                if (this.pos.x < 1250) {
+                    x = 300;
+                }
+            }
+            if (engine.input.keyboard.isHeld(Input.Keys.S)) {
+                if (this.pos.y < 450) {
+                    y = 300;
+                }
+            }
+            this.vel = new Vector(x, y);
+        }
+
+        this.counter = this.counter + delta;
+        if (this.counter > 300) {
+            this.canShoot = true;
+        }
+        if (this.health < 10) {
+            if (this.isShooting && this.canShoot) {
+                engine.currentScene.add(new projectile(this.pos.x, this.pos.y, this.shootDirectionX, this.shootDirectionY, 1, 800));
+                this.counter = 0;
+                this.canShoot = false;
+            }
+        }
+
+        if (this.health > 9) {
+            this.deathAnimation();
+        }
     }
-  }
+
+    deathAnimation() {
+        this.angularVelocity = this.angularVelocity + 0.1;
+        let fallingspeed = this.vel.y;
+        fallingspeed = fallingspeed + 5;
+        this.vel = new Vector(0, fallingspeed);
+    }
 }
