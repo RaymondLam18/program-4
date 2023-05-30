@@ -1,7 +1,7 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import terrainImage from '../images/Background.png'
 import retro from '../images/Retro.png'
-import playerProjectile from '../images/TestProjectilev2.png'
+import playerProjectile from '../images/Projectile.png'
 import rock from '../images/Rock.png'
 import healthbars from '../images/HealthBarSpriteSheet.png'
 import retrybutton from '../images/retrybutton.png'
