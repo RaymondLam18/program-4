@@ -4,7 +4,7 @@ import retro from '../images/Retro.png'
 import playerProjectile from '../images/Projectile.png'
 import rock from '../images/Rock.png'
 import healthbars from '../images/HealthBarSpriteSheet.png'
-import retrybutton from '../images/retrybutton.png'
+import retrybutton from '../images/Retry.png'
 
 const Resources = {
     Terrain: new ImageSource(terrainImage),
