@@ -72,7 +72,7 @@ export class Level extends Scene {
       direction = -1;
       startpoint = 1300;
     }
-    let enemyProjectile = new projectile(0 + startpoint, (Math.random() * 400) + 75, 300 * direction, 0, 0, 200);
-    this.add(enemyProjectile);
+    let Rock = new projectile(0 + startpoint, (Math.random() * 400) + 75, 300 * direction, 0, 0, 200);
+    this.add(Rock);
   }
 }

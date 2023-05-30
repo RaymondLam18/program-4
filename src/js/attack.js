@@ -14,7 +14,7 @@ export class projectile extends Actor {
 
     onInitialize() {
         if (this.type === 0) {
-            this.graphics.use(Resources.EnemyProjectile.toSprite());
+            this.graphics.use(Resources.Rock.toSprite());
             this.on("collisionstart", (event) => {
                 if (event.other.type === 1) {
                     event.other.kill();
