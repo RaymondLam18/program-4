@@ -1,6 +1,5 @@
 import { Actor, Engine, Vector } from "excalibur";
 import { Resources } from "./resources";
-import { Game } from "./game";
 
 export class RetryButton extends Actor{
 
