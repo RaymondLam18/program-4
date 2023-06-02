@@ -3,7 +3,7 @@ import { Terrain } from './background.js';
 import { playercharacter } from './retro.js';
 import { projectile } from "./attack.js";
 import { healthbar } from './health.js';
-import { Blank } from "./blank.js";
+import { Empty } from "./empty.js";
 
 export class Level extends Scene {
   playerCharacter;
@@ -57,7 +57,7 @@ export class Level extends Scene {
   }
 
   onActivate(ctx) {
-    this.add(new Blank());
+    this.add(new Empty());
 
     this.playerCharacter.health = 0;
     this.playerCharacter.pos = new Vector(650, 300);
@@ -66,7 +66,7 @@ export class Level extends Scene {
   }
 
   onDeactivate(ctx) {
-    this.add(new Blank());
+    this.add(new Empty());
 
     this.score = -10
   }

@@ -1,6 +1,6 @@
 import { Actor, Vector } from "excalibur";
 
-export class Blank extends Actor {
+export class Empty extends Actor {
     constructor() {
         super({ width: 1300, height: 600 });
         this.pos = new Vector(650, 300);
