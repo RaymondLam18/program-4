@@ -48,12 +48,22 @@ export class Level extends Scene {
       fcn: () => {
         this.score += 10; // Increase score by 10 every second
         this.scoreLabel.text = `Score: ${this.score}`; // Update score label
+
+        // Store score in local storage
+        localStorage.setItem('score', this.score.toString());
       },
       repeats: true,
       interval: 1000 // Update score every second
     });
     this.add(this.scoreTimer);
     this.scoreTimer.start();
+
+    // Retrieve score from local storage if available
+    const storedScore = localStorage.getItem('score');
+    if (storedScore) {
+      this.score = parseInt(storedScore);
+      this.scoreLabel.text = `Score: ${this.score}`;
+    }
   }
 
   onActivate(ctx) {
@@ -66,9 +76,12 @@ export class Level extends Scene {
   }
 
   onDeactivate(ctx) {
-    this.add(new Blank());
+    this.add(new Empty());
 
-    this.score = -10
+    // Reset score when deactivating the scene
+    this.score = 0;
+    this.scoreLabel.text = 'Score: 0';
+
   }
 
   spawnEnemy() {
