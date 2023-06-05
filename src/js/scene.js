@@ -66,7 +66,7 @@ export class Level extends Scene {
   }
 
   onDeactivate(ctx) {
-    this.add(new Empty());
+    this.add(new Blank());
 
     this.score = -10
   }

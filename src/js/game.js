@@ -1,5 +1,5 @@
 import { Engine } from 'excalibur'
-import { Level } from '../scene'
+import { Level } from './scene'
 import { GameOver } from './gameover'
 import { ResourceLoader } from './resources'
 
