@@ -20,7 +20,4 @@ export class GameOver extends Scene {
         this.retrybutton.enableCapturePointer = true;
         this.add(this.retrybutton);
     }
-
-    onActivate(ctx) {
-    }
 }

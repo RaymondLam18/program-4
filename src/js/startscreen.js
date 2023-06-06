@@ -18,7 +18,4 @@ export class Start extends Scene {
         this.startbutton.enableCapturePointer = true;
         this.add(this.startbutton);
     }
-
-    onActivate(ctx) {
-    }
 }
