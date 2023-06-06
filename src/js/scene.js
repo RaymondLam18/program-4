@@ -57,13 +57,6 @@ export class Level extends Scene {
     });
     this.add(this.scoreTimer);
     this.scoreTimer.start();
-
-    // Retrieve score from local storage if available
-    // const storedScore = localStorage.getItem('score');
-    // if (storedScore) {
-    //   this.score = parseInt(storedScore);
-    //   this.scoreLabel.text = `Score: ${this.score}`;
-    // }
   }
 
   onActivate(ctx) {
