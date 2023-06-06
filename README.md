@@ -1,5 +1,5 @@
 Survive the asteroid bay
 
-Move use WASD
+Use WASD to move
 
 Hold mouse button to shoot
