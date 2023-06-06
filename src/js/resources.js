@@ -6,6 +6,7 @@ import rock from '../images/Rock.png'
 import healthbars from '../images/HealthBarSpriteSheet.png'
 import retrybutton from '../images/Retry.png'
 import startbutton from '../images/Start.png'
+import space from '../images/Space.jpg'
 
 const Resources = {
     Terrain: new ImageSource(terrainImage),
@@ -14,7 +15,8 @@ const Resources = {
     Rock: new ImageSource(rock),
     HealthBars: new ImageSource(healthbars),
     RetryButton : new ImageSource(retrybutton),
-    StartButton : new ImageSource (startbutton)
+    StartButton : new ImageSource (startbutton),
+    Space : new ImageSource (space)
 }
 const resourceArray = []
 for (const key in Resources) {
