@@ -52,6 +52,7 @@ export class playercharacter extends Actor {
 
         this.on('exitviewport', (event) => {
             engine.goToScene('gameover');
+            
         });
     }
 

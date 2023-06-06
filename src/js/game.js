@@ -2,6 +2,7 @@ import { Engine } from 'excalibur'
 import { Level } from './scene'
 import { GameOver } from './gameover'
 import { ResourceLoader } from './resources'
+import { Start } from './startscreen'
 
 
 export class Game extends Engine {
@@ -15,9 +16,10 @@ export class Game extends Engine {
 
     startGame() {
         this.addScene('level', new Level());
+        this.addScene('start', new Start());
         this.addScene('gameover', new GameOver());
 
-        this.goToScene('level');
+        this.goToScene('start');
     }
 }
 

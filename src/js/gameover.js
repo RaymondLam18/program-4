@@ -9,13 +9,11 @@ export class GameOver extends Scene {
     }
 
     onInitialize() {
-        console.log('game over screen is gemaakt');
         this.retrybutton = new RetryButton();
         this.retrybutton.enableCapturePointer = true;
         this.add(this.retrybutton);
     }
 
     onActivate(ctx) {
-        console.log('game over screen is geactiveerd');
     }
 }

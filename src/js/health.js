@@ -11,7 +11,6 @@ export class healthbar extends Actor {
     }
 
     onInitialize() {
-        console.log('healthbar is toegevoegd');
         this.spritesheet = SpriteSheet.fromImageSource({
             image: Resources.HealthBars,
             grid: {
