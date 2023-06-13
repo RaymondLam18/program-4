@@ -17,13 +17,13 @@ export class Level extends Scene {
   }
 
   onInitialize() {
-    const enemyBulletTimer = new Timer({
+    const asteroid = new Timer({
       fcn: () => this.spawnEnemy(),
       repeats: true,
       interval: 500
     });
-    this.add(enemyBulletTimer);
-    enemyBulletTimer.start();
+    this.add(asteroid);
+    asteroid.start();
 
     const ground = new Terrain();
     this.add(ground);
