@@ -1,5 +1,5 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
-import terrainImage from '../images/Background.png'
+import backImage from '../images/Background.png'
 import retro from '../images/Retro.png'
 import playerProjectile from '../images/Projectile.png'
 import rock from '../images/Rock.png'
@@ -9,7 +9,7 @@ import startbutton from '../images/Start.png'
 import space from '../images/Space.jpg'
 
 const Resources = {
-    Terrain: new ImageSource(terrainImage),
+    Back: new ImageSource(backImage),
     Player: new ImageSource(retro),
     PlayerProjectile: new ImageSource(playerProjectile),
     Rock: new ImageSource(rock),

@@ -1,12 +1,12 @@
 import { Timer, Scene, Vector, RotationType, Label, TextAlign } from "excalibur";
-import { Terrain } from './background.js';
-import { playercharacter } from './retro.js';
+import { Back } from './background.js';
+import { Retro } from './retro.js';
 import { projectile } from "./attack.js";
 import { healthbar } from './health.js';
 import { Empty } from "./empty.js";
 
 export class Level extends Scene {
-  playerCharacter;
+  player;
   healthbar;
   score = 0;
   scoreLabel;
@@ -25,11 +25,11 @@ export class Level extends Scene {
     this.add(asteroid);
     asteroid.start();
 
-    const ground = new Terrain();
+    const ground = new Back();
     this.add(ground);
 
-    this.playerCharacter = new playercharacter();
-    this.add(this.playerCharacter);
+    this.player = new Retro();
+    this.add(this.player);
 
     this.healthbar = new healthbar(0);
     this.add(this.healthbar);
@@ -62,10 +62,10 @@ export class Level extends Scene {
   onActivate(ctx) {
     this.add(new Empty());
 
-    this.playerCharacter.health = 0;
-    this.playerCharacter.pos = new Vector(650, 300);
-    this.playerCharacter.actions.rotateTo(0, 1000, RotationType.Clockwise);
-    this.healthbar.onHealthUpdate(this.playerCharacter.health);
+    this.player.health = 0;
+    this.player.pos = new Vector(650, 300);
+    this.player.actions.rotateTo(0, 1000, RotationType.Clockwise);
+    this.healthbar.onHealthUpdate(this.player.health);
   }
 
   onDeactivate(ctx) {

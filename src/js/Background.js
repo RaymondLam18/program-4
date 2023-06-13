@@ -1,11 +1,11 @@
 import { Actor, Vector, GraphicsGroup } from 'excalibur';
 import { Resources, ResourceLoader } from './resources.js'
 
-export class Terrain extends Actor {
+export class Back extends Actor {
     offset;
 
     onInitialize(engine) {
-        const BackImage = Resources.Terrain.toSprite();
+        const BackImage = Resources.Back.toSprite();
         this.offset = BackImage.width;
 
         BackImage.height = 600;

@@ -2,7 +2,7 @@ import { Actor, Engine, Vector, Input, Timer } from "excalibur";
 import { Resources, ResourceLoader } from './resources.js'
 import { projectile } from "./attack.js";
 
-export class playercharacter extends Actor {
+export class Retro extends Actor {
     pointerX;
     pointerY;
 
