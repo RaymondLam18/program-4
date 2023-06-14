@@ -108,9 +108,9 @@ export class Retro extends Actor {
     }
 
     deathAnimation() {
-        this.angularVelocity = this.angularVelocity + 0.1;
+        this.angularVelocity = this.angularVelocity - 0.2;
         let fallingspeed = this.vel.y;
-        fallingspeed = fallingspeed + 5;
+        fallingspeed = fallingspeed + 10;
         this.vel = new Vector(0, fallingspeed);
     }
 }
