@@ -1,6 +1,7 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import backImage from '../images/Background.png'
 import retro from '../images/Retro.png'
+import retroDead from '../images/Retro Dead.png'
 import playerProjectile from '../images/Projectile.png'
 import rock from '../images/Rock.png'
 import healthbars from '../images/HealthBarSpriteSheet.png'
@@ -16,7 +17,8 @@ const Resources = {
     HealthBars: new ImageSource(healthbars),
     RetryButton : new ImageSource(retrybutton),
     StartButton : new ImageSource (startbutton),
-    Space : new ImageSource (space)
+    Space : new ImageSource (space),
+    DeathAnimation: new ImageSource (retroDead)
 }
 const resourceArray = []
 for (const key in Resources) {

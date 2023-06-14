@@ -108,6 +108,7 @@ export class Retro extends Actor {
     }
 
     deathAnimation() {
+        this.graphics.use(Resources.DeathAnimation.toSprite());
         this.angularVelocity = this.angularVelocity - 0.2;
         let fallingspeed = this.vel.y;
         fallingspeed = fallingspeed + 10;
